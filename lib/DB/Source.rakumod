@@ -8,11 +8,11 @@ use Grammar::DSN;
 
 has Str $.db-source;
 has DB $!data-base;
-
+has Str $.scheme;
 
 
 submethod BUILD(:$db-source) {
-    say $db-source;
+  
     if Grammar::DSN.parse($db-source).so {
         $!db-source = $db-source;
     }
@@ -26,6 +26,7 @@ submethod TWEAK() {
         when /:i sqlite/ { 
             my $host = $dsn<host>.Str;
             $!data-base = DB::SQLite.new: filename => $host ;
+            $!scheme = 'sqlite';
         }
         when rx:i/ mysql / { 
             my $user = $dsn<user>.Str;
@@ -40,6 +41,7 @@ submethod TWEAK() {
                 :password($password)
                 :database($database)
             );
+            $!scheme = 'mysql';
         }
         when rx:i/ pg | postgres / { ... }
     }
