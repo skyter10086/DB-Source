@@ -8,7 +8,11 @@ SYNOPSIS
 
 ```raku
 use DB::Source;
+
+my $db = DB::Source.new( db-source => 'sqlite://@tk.db/').db;
+
 ```
+Then you can use $db like DB::Connection.
 
 DESCRIPTION
 ===========
