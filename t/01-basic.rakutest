@@ -1,0 +1,14 @@
+use Test;
+use DB::Source;
+use DB;
+
+plan 2;
+
+my $sqlite = DB::Source.new: db-source => 'SQLite://@tk.db/';
+does-ok $sqlite.db, DB::Connection;
+
+my $mysql = DB::Source.new: db-source => 'MySQL://root:"R@@T108325"@localhost:3306/test';
+does-ok $mysql.db, DB::Connection;
+#pass "replace me";
+
+done-testing;

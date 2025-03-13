@@ -1,0 +1,29 @@
+{
+  "auth": "zef:skyter10086",
+  "authors": [
+    "skyter10086"
+  ],
+  "build-depends": [
+  ],
+  "depends": [
+    "DB",
+    "DB::SQLite",
+    "DB::MySQL",
+    "Grammar::DSN"
+  ],
+  "description": "blah blah blah",
+  "license": "Artistic-2.0",
+  "name": "DB::Source",
+  "perl": "6.d",
+  "provides": {
+    "DB::Source": "lib/DB/Source.rakumod"
+  },
+  "resources": [
+  ],
+  "source-url": "",
+  "tags": [
+  ],
+  "test-depends": [
+  ],
+  "version": "0.0.1"
+}
