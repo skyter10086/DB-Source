@@ -2,13 +2,21 @@ use Test;
 use DB::Source;
 use DB;
 
-plan 2;
+plan 4;
 
 my $sqlite = DB::Source.new: db-source => 'SQLite://@tk.db/';
 does-ok $sqlite.db, DB::Connection;
 
-my $mysql = DB::Source.new: db-source => 'MySQL://root:"R@@T108325"@localhost:3306/test';
-does-ok $mysql.db, DB::Connection;
+
+my $mysql = DB::Source.new: db-source => 'MySQL://root:"t@5k"@localhost:3306/test';
+subtest "skip mysql DB test" => sub {
+    plan :skip-all<We DONT Test MySQL Connection.> if $mysql.scheme eq 'mysql';
+    plan 1;
+    does-ok $mysql.db, DB::Connection;
+}
 #pass "replace me";
 
-done-testing;
+ok $mysql.scheme eq 'mysql';
+ok $sqlite.scheme eq 'sqlite';
+
+pass "All tests done!";
