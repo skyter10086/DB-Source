@@ -5,18 +5,12 @@ use DB::MySQL;
 use DB;
 use Grammar::DSN;
 
+subtype DSN of Str where { Grammar::DSN.parse($_).so };
 
-has Str $.db-source;
+has DSN $.db-source;
 has DB $!data-base;
 has Str $.scheme;
 
-
-submethod BUILD(:$db-source) {
-  
-    if Grammar::DSN.parse($db-source).so {
-        $!db-source = $db-source;
-    }
-}
 
 
 submethod TWEAK() {
