@@ -30,8 +30,8 @@ submethod TWEAK() {
             $!scheme = 'sqlite';
         }
         when rx:i/ mysql / { 
-            my $user = $dsn.<connection><authorization><user>.Str;
-            my $password = $dsn.<connection><authorization><password>.Str;
+            my $user = $dsn.<connection><user>.Str;
+            my $password = $dsn.<connection><password>.Str;
             my $host = $dsn.<connection><host>.Str;
             my $port = $dsn.<connection><port>.Int;
             my $database = $dsn.<connection><database>.Str;
