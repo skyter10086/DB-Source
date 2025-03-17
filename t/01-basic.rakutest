@@ -4,7 +4,7 @@ use DB;
 
 plan 4;
 
-my $sqlite = DB::Source.new: db-source => 'SQLite://@tk.db/';
+my $sqlite = DB::Source.new: db-source => 'SQLite://tk.db/';
 does-ok $sqlite.db, DB::Connection;
 
 
