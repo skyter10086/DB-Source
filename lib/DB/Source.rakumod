@@ -23,18 +23,18 @@ submethod BUILD(:$db-source) {
 
 submethod TWEAK() {
     my $dsn = Grammar::DSN.parse($!db-source);
-    given $dsn<driver>.Str {
+    given $dsn.<connection><driver>.Str {
         when /:i sqlite/ { 
-            my $host = $dsn<host>.Str;
+            my $host = $dsn.<connection><host>.Str;
             $!data-base = DB::SQLite.new: filename => $host ;
             $!scheme = 'sqlite';
         }
         when rx:i/ mysql / { 
-            my $user = $dsn<user>.Str;
-            my $password = $dsn<password>.Str;
-            my $host = $dsn<host>.Str;
-            my $port = $dsn<port>.Int;
-            my $database = $dsn<database>.Str;
+            my $user = $dsn.<connection><authorization><user>.Str;
+            my $password = $dsn.<connection><authorization><password>.Str;
+            my $host = $dsn.<connection><host>.Str;
+            my $port = $dsn.<connection><port>.Int;
+            my $database = $dsn.<connection><database>.Str;
             $!data-base = DB::MySQL.new(
                 :host($host)
                 :port($port)
