@@ -4,11 +4,11 @@ use DB;
 
 plan 4;
 
-my $sqlite = DB::Source.new: db-source => 'SQLite://tk.db/';
+my $sqlite = DB::Source.new: db-source => 'sqlite://tk.db/';
 does-ok $sqlite.db, DB::Connection;
 
 
-my $mysql = DB::Source.new: db-source => 'MySQL://root:"t@5k"@localhost:3306/test';
+my $mysql = DB::Source.new: db-source => 'mysql://root:"t@5k"@localhost:3306/test';
 subtest "skip mysql DB test" => sub {
     plan :skip-all<We DONT Test MySQL Connection.> if $mysql.scheme eq 'mysql';
     plan 1;
