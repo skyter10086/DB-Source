@@ -2,7 +2,7 @@ use Test;
 use DB::Source;
 use DB;
 
-plan 4;
+plan 5;
 
 my $sqlite = DB::Source.new: db-source => 'sqlite://tk.db/';
 does-ok $sqlite.db, DB::Connection;
